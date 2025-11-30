@@ -20,11 +20,9 @@ class GetSecretHandler:
 
         if encrypted_secret.passphrase_hash:
             if not request.verify_hash:
-                # Business logic: passphrase needed, not an error
                 return PassphraseRequiredResponse()
 
             if request.verify_hash != encrypted_secret.passphrase_hash:
-                # Actual authentication failure
                 raise HTTPException(status_code=401, detail="Invalid passphrase")
 
         await Redis().delete(request.secret_id)
