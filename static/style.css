@@ -17,7 +17,7 @@ body {
     color: var(--text-color);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     min-height: 100dvh;
@@ -27,6 +27,7 @@ body {
 }
 
 .container {
+    margin: auto;
     background-color: var(--box-bg);
     padding: 3rem;
     border-radius: 16px;
@@ -37,6 +38,37 @@ body {
        User asked for simple. Let's add a very subtle border for structure. */
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-md);
+}
+
+.site-header {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #ffffff;
+    background-color: #2560FF;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.logo:hover {
+    background-color: #1a4bd6;
+}
+
+.logo:active {
+    transform: translateY(1px);
 }
 
 h1 {
