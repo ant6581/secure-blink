@@ -180,24 +180,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const response = await fetch(url);
 
+        if (response.status === 404) {
+            throw new Error('Secret not found or already viewed.');
+        }
+
         if (response.status === 401) {
-            // If passphrase was provided but still got 401, it's wrong
-            if (passphraseHash) {
-                throw new Error('Invalid passphrase. Please try again.');
-            }
-            // Passphrase required - first time
+            // 401 now only means WRONG passphrase (actual auth error)
+            throw new Error('Invalid passphrase. Please try again.');
+        }
+
+        if (!response.ok) throw new Error('Network error');
+
+        const data = await response.json();
+
+        // Check if passphrase is required (business logic, not error)
+        if (data.passphrase_required) {
             revealBtn.classList.add('hidden');
             passphraseSection.classList.remove('hidden');
             errorMsg.classList.add('hidden');
             return; // Stop here, wait for user input
         }
 
-        if (response.status === 404) {
-            throw new Error('Secret not found or already viewed.');
-        }
-        if (!response.ok) throw new Error('Network error');
-
-        const data = await response.json();
         const payload = data.ciphertext;
 
         // 2. Parse payload

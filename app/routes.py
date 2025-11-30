@@ -3,7 +3,11 @@ from models.requests.create_secret import CreateSecretRequest, CreateSecretRespo
 from handlers.create_secret import CreateSecretHandler
 from handlers.get_secret import GetSecretHandler
 from handlers.delete_secret import DeleteSecretHandler
-from models.requests.get_secret import GetSecretRequest, GetSecretResponse
+from models.requests.get_secret import (
+    GetSecretRequest,
+    GetSecretResponse,
+    PassphraseRequiredResponse,
+)
 
 router = APIRouter(prefix="/api")
 
@@ -13,8 +17,10 @@ async def create_secret(request: CreateSecretRequest) -> CreateSecretResponse:
     return await CreateSecretHandler.handle(request)
 
 
-@router.get("/secret/{secret_id}", response_model=GetSecretResponse)
-async def get_secret(request: Request, secret_id: str) -> GetSecretResponse:
+@router.get("/secret/{secret_id}")
+async def get_secret(
+    request: Request, secret_id: str
+) -> GetSecretResponse | PassphraseRequiredResponse:
     request = GetSecretRequest(
         secret_id=secret_id, verify_hash=request.query_params.get("verify_hash")
     )

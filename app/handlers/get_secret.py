@@ -1,12 +1,18 @@
 from fastapi import HTTPException
 from models.secret import EncryptedSecret
 from clients.redis import Redis
-from models.requests.get_secret import GetSecretRequest, GetSecretResponse
+from models.requests.get_secret import (
+    GetSecretRequest,
+    GetSecretResponse,
+    PassphraseRequiredResponse,
+)
 
 
 class GetSecretHandler:
     @staticmethod
-    async def handle(request: GetSecretRequest) -> GetSecretResponse:
+    async def handle(
+        request: GetSecretRequest,
+    ) -> GetSecretResponse | PassphraseRequiredResponse:
         encrypted_secret = await Redis().get_encrypted_secret(request.secret_id)
 
         if not encrypted_secret:
@@ -14,9 +20,11 @@ class GetSecretHandler:
 
         if encrypted_secret.passphrase_hash:
             if not request.verify_hash:
-                raise HTTPException(status_code=401, detail="Passphrase required")
+                # Business logic: passphrase needed, not an error
+                return PassphraseRequiredResponse()
 
             if request.verify_hash != encrypted_secret.passphrase_hash:
+                # Actual authentication failure
                 raise HTTPException(status_code=401, detail="Invalid passphrase")
 
         await Redis().delete(request.secret_id)
