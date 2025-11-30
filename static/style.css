@@ -92,7 +92,7 @@ textarea {
     box-sizing: border-box;
     font-family: inherit;
     /* Use the nice UI font, not monospace, unless it's code */
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     font-size: 0.95rem;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -154,7 +154,7 @@ select:focus {
 .form-group input[type="password"]::placeholder,
 textarea::placeholder {
     color: #9ca3af;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     /* Ensure consistent size */
     opacity: 1;
     /* Firefox fix */
