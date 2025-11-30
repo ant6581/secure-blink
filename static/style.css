@@ -20,6 +20,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    min-height: 100dvh;
+    /* Better for mobile browsers */
     margin: 0;
     line-height: 1.5;
 }
@@ -324,17 +326,19 @@ footer a:hover {
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .container {
         padding: 1.5rem;
-        width: 90%;
+        width: calc(100% - 2rem);
+        /* Ensure consistent margin */
         margin: 1rem auto;
         box-shadow: var(--shadow-sm);
         /* Lighter shadow on mobile */
     }
 
     h1 {
-        font-size: 1.25rem;
+        font-size: 1.35rem;
+        /* Slightly larger for better readability */
         margin-bottom: 1.5rem;
     }
 
@@ -343,8 +347,8 @@ footer a:hover {
     input[type="text"],
     input[type="password"],
     select {
-        min-height: 48px;
-        /* Comfortable touch target */
+        min-height: 50px;
+        /* Even larger touch target */
         font-size: 16px;
         /* Prevent zoom on iOS */
     }
