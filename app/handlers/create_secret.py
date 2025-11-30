@@ -1,13 +1,20 @@
 import uuid
-from models.create_secret import CreateSecretRequest
+from models.requests.create_secret import CreateSecretRequest, CreateSecretResponse
+from models.secret import EncryptedSecret
 from clients.redis import Redis
 
 
 class CreateSecretHandler:
     @staticmethod
-    async def handle(request: CreateSecretRequest) -> dict[str, str]:
-        secret_id = str(uuid.uuid4())
+    async def handle(request: CreateSecretRequest) -> CreateSecretResponse:
 
-        await Redis().create_secret(secret_id=secret_id, secret=request)
+        secret = EncryptedSecret(
+            id=str(uuid.uuid4()),
+            ciphertext=request.ciphertext,
+            ttl=request.config.ttl,
+            passphrase_hash=request.config.passphrase_hash,
+        )
 
-        return {"id": secret_id}
+        await Redis().save_encrypted_secret(secret=secret)
+
+        return CreateSecretResponse(id=secret.id)

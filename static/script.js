@@ -181,7 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch(url);
 
         if (response.status === 401) {
-            // Passphrase required
+            // If passphrase was provided but still got 401, it's wrong
+            if (passphraseHash) {
+                throw new Error('Invalid passphrase. Please try again.');
+            }
+            // Passphrase required - first time
             revealBtn.classList.add('hidden');
             passphraseSection.classList.remove('hidden');
             errorMsg.classList.add('hidden');
