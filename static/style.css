@@ -1,0 +1,324 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --text-secondary: #666666;
+    --accent-color: #2560ff;
+    --accent-hover: #1a4bd6;
+    --box-bg: #ffffff;
+    --border-color: #e5e7eb;
+    --input-bg: #f9fafb;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.container {
+    background-color: var(--box-bg);
+    padding: 3rem;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    /* Minimalist: no heavy shadow, maybe just a subtle border or very light shadow if needed. 
+       User asked for simple. Let's add a very subtle border for structure. */
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: -0.025em;
+    color: var(--text-color);
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 1rem;
+    border-radius: 8px;
+    resize: vertical;
+    box-sizing: border-box;
+    font-family: inherit;
+    /* Use the nice UI font, not monospace, unless it's code */
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(37, 96, 255, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: #000000;
+    /* Black as requested */
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.form-group input[type="password"],
+.form-group select {
+    width: 100%;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    height: 48px;
+    appearance: none;
+}
+
+/* Re-add select arrow */
+.form-group select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25em 1.25em;
+}
+
+.form-group input[type="password"]:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(37, 96, 255, 0.1);
+    /* Subtle ring */
+}
+
+.form-group input[type="password"]::placeholder,
+textarea::placeholder {
+    color: #9ca3af;
+    font-size: 0.95rem;
+    /* Ensure consistent size */
+    opacity: 1;
+    /* Firefox fix */
+}
+
+label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+select {
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+}
+
+button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s, transform 0.1s;
+    width: 100%;
+    /* Full width button looks better in this card layout */
+}
+
+button:hover {
+    background-color: var(--accent-hover);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+button:disabled {
+    background-color: #a5b4fc;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
+.link-box {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: monospace;
+    /* Keep monospace for the URL */
+}
+
+#copy-btn {
+    width: auto;
+    /* Reset width for this specific button */
+    padding: 0.75rem 1.25rem;
+}
+
+pre {
+    background-color: var(--input-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: break-all;
+    border: 1px solid var(--border-color);
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-top: 0;
+}
+
+.warning {
+    color: #d97706;
+    /* Amber-600 */
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    background-color: #fffbeb;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #fcd34d;
+}
+
+.error {
+    color: #dc2626;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+footer {
+    margin-top: 3rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: var(--accent-color);
+}
+
+.delete-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s;
+    opacity: 0.7;
+}
+
+.delete-link:hover {
+    color: #dc2626;
+    opacity: 1;
+}
+
+.delete-link svg {
+    flex-shrink: 0;
+}
+
+/* Passphrase Section Styles */
+.read-view-description {
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.passphrase-container {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+.passphrase-info {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Ensure passphrase input follows same styling as create form */
+#passphrase-section .form-group {
+    margin-bottom: 1.5rem;
+}
+
+#passphrase-section input[type="password"] {
+    width: 100%;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    height: 48px;
+}
+
+#passphrase-section input[type="password"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(37, 96, 255, 0.1);
+}
+
+#passphrase-section input[type="password"]::placeholder {
+    color: #9ca3af;
+    font-size: 0.95rem;
+    opacity: 1;
+}

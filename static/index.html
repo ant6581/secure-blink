@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single-Use Secret</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Single-Use Secret</h1>
+
+        <div id="create-view">
+            <div id="input-section">
+                <textarea id="secret-input" placeholder="Paste your secret here..."></textarea>
+
+                <div class="form-group">
+                    <label for="passphrase-input">Passphrase</label>
+                    <input type="password" id="passphrase-input" placeholder="Enter passphrase">
+                </div>
+
+                <div class="form-group">
+                    <label for="ttl-select">Expires in</label>
+                    <select id="ttl-select">
+                        <option value="300">5 Minutes</option>
+                        <option value="1800">30 Minutes</option>
+                        <option value="3600">1 Hour</option>
+                        <option value="21600">6 Hours</option>
+                        <option value="43200">12 Hours</option>
+                        <option value="86400">1 Day</option>
+                        <option value="604800" selected>1 Week</option>
+                        <option value="1209600">2 Weeks</option>
+                        <option value="2592000">1 Month</option>
+                        <option value="7776000">3 Months</option>
+                        <option value="15552000">6 Months</option>
+                        <option value="31536000">1 Year</option>
+                    </select>
+                </div>
+
+                <button id="generate-btn">Create Secret Link</button>
+            </div>
+            <div id="result-area" class="hidden">
+                <p style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.9rem;">Share
+                    this disposable link:</p>
+                <div class="link-box">
+                    <input type="text" id="secret-link" readonly onclick="this.select()">
+                    <button id="copy-btn">Copy</button>
+                </div>
+                <a href="#" id="delete-btn" class="delete-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2">
+                        </path>
+                    </svg>
+                    Delete secret
+                </a>
+            </div>
+        </div>
+
+        <div id="read-view" class="hidden">
+            <p class="read-view-description">You have received a secure, single-use secret.</p>
+
+            <div id="passphrase-section" class="hidden passphrase-container">
+                <p class="passphrase-info">This secret is protected by a passphrase.</p>
+                <div class="form-group">
+                    <label for="decrypt-passphrase">Passphrase</label>
+                    <input type="password" id="decrypt-passphrase" placeholder="Enter passphrase">
+                </div>
+                <button id="submit-passphrase-btn">Unlock</button>
+            </div>
+
+            <button id="reveal-btn">Reveal Secret</button>
+            <div id="secret-display" class="hidden">
+                <pre id="secret-content"></pre>
+                <p class="warning">This one-time link has now expired. Make sure to save the secret before you close
+                    this page.</p>
+            </div>
+            <p id="error-msg" class="error hidden"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Secure. Ephemeral. Open Source.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
