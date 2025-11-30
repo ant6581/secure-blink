@@ -19,4 +19,4 @@ async def get_secret(secret_id: str, verify_hash: str | None = None) -> dict[str
 
 @router.delete("/secret/{secret_id}")
 async def delete_secret(secret_id: str) -> None:
-    return await DeleteSecretHandler.handle(secret_id)
+    await DeleteSecretHandler.handle(secret_id)

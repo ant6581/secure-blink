@@ -46,7 +46,13 @@
                     this disposable link:</p>
                 <div class="link-box">
                     <input type="text" id="secret-link" readonly onclick="this.select()">
-                    <button id="copy-btn">Copy</button>
+                    <button id="copy-btn" class="icon-btn" title="Copy link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
                 </div>
                 <a href="#" id="delete-btn" class="delete-link">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -72,7 +78,16 @@
 
             <button id="reveal-btn">Reveal Secret</button>
             <div id="secret-display" class="hidden">
-                <pre id="secret-content"></pre>
+                <div class="link-box">
+                    <pre id="secret-content"></pre>
+                    <button id="copy-secret-btn" class="icon-btn" title="Copy secret">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
                 <p class="warning">This one-time link has now expired. Make sure to save the secret before you close
                     this page.</p>
             </div>

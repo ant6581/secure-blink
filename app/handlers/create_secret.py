@@ -1,5 +1,4 @@
 import uuid
-from fastapi import APIRouter
 from models.create_secret import CreateSecretRequest
 from clients.redis import Redis
 

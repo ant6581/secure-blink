@@ -107,12 +107,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const copySecretBtn = document.getElementById('copy-secret-btn');
+
+    function showCopyFeedback(btn) {
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        `;
+        btn.classList.add('text-green-500'); // Optional: if we had utility classes, but we can stick to CSS or just inline style if needed. 
+        // Actually, let's just rely on the icon change. The user asked for blue on hover, didn't specify success color.
+        // But a checkmark is universal.
+
+        setTimeout(() => {
+            btn.innerHTML = originalHtml;
+        }, 2000);
+    }
+
     copyBtn.addEventListener('click', () => {
         secretLinkInput.select();
         document.execCommand('copy');
-        copyBtn.textContent = 'Copied!';
-        setTimeout(() => copyBtn.textContent = 'Copy', 2000);
+        showCopyFeedback(copyBtn);
     });
+
+    if (copySecretBtn) {
+        copySecretBtn.addEventListener('click', () => {
+            const text = secretContent.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showCopyFeedback(copySecretBtn);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        });
+    }
 
     deleteBtn.addEventListener('click', async (e) => {
         e.preventDefault();

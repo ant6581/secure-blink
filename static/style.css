@@ -200,8 +200,39 @@ input[type="text"] {
 
 #copy-btn {
     width: auto;
-    /* Reset width for this specific button */
-    padding: 0.75rem 1.25rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    /* Fixed width for icon buttons */
+    height: 42px;
+    /* Fixed height for icon buttons */
+    flex-shrink: 0;
+}
+
+.icon-btn:hover {
+    color: var(--accent-color);
+    background-color: rgba(37, 96, 255, 0.05);
+    border-color: var(--accent-color);
+}
+
+.icon-btn svg {
+    width: 20px;
+    height: 20px;
 }
 
 pre {
@@ -216,6 +247,10 @@ pre {
     font-size: 0.9rem;
     color: var(--text-color);
     margin-top: 0;
+    flex-grow: 1;
+    /* Allow pre to take available space in flex container */
+    margin-bottom: 0;
+    /* Remove bottom margin when inside link-box */
 }
 
 .warning {
