@@ -322,3 +322,48 @@ footer a:hover {
     font-size: 0.95rem;
     opacity: 1;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    .container {
+        padding: 1.5rem;
+        width: 90%;
+        margin: 1rem auto;
+        box-shadow: var(--shadow-sm);
+        /* Lighter shadow on mobile */
+    }
+
+    h1 {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Ensure touch targets are large enough */
+    button,
+    input[type="text"],
+    input[type="password"],
+    select {
+        min-height: 48px;
+        /* Comfortable touch target */
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+    }
+
+    textarea {
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+    }
+
+    .link-box {
+        flex-direction: column;
+    }
+
+    #copy-btn {
+        width: 100%;
+    }
+
+    footer {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+}
