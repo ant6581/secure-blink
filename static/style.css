@@ -26,12 +26,6 @@ body {
     line-height: 1.5;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 .container {
     background-color: var(--box-bg);
     padding: 3rem;
