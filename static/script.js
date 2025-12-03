@@ -126,9 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     copyBtn.addEventListener('click', () => {
-        secretLinkInput.select();
-        document.execCommand('copy');
-        showCopyFeedback(copyBtn);
+        const text = secretLinkInput.value;
+        navigator.clipboard.writeText(text).then(() => {
+            showCopyFeedback(copyBtn);
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+        });
     });
 
     if (copySecretBtn) {
