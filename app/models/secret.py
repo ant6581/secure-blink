@@ -6,3 +6,4 @@ class EncryptedSecret(BaseModel):
     ciphertext: str
     ttl: int
     passphrase_hash: str | None = None
+

@@ -15,6 +15,6 @@ class CreateSecretHandler:
             passphrase_hash=request.config.passphrase_hash,
         )
 
-        await Redis().save_encrypted_secret(secret=secret)
+        await Redis().save_encrypted_secret(secret=secret, ttl=request.config.ttl)
 
         return CreateSecretResponse(id=secret.id)
