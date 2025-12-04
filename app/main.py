@@ -3,10 +3,14 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from routes import router
+from middleware import SecurityHeaders, RateLimit
 
 load_dotenv()
 
 app = FastAPI()
+
+app.add_middleware(SecurityHeaders)
+app.add_middleware(RateLimit)
 
 app.include_router(router)
 
