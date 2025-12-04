@@ -116,9 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
         `;
-        btn.classList.add('text-green-500'); // Optional: if we had utility classes, but we can stick to CSS or just inline style if needed. 
-        // Actually, let's just rely on the icon change. The user asked for blue on hover, didn't specify success color.
-        // But a checkmark is universal.
 
         setTimeout(() => {
             btn.innerHTML = originalHtml;

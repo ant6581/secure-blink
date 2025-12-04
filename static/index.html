@@ -72,92 +72,96 @@
         <a href="/" class="logo">;blink</a>
     </header>
 
-    <div class="container">
-        <div id="create-view">
-            <div id="input-section">
-                <div class="form-group">
-                    <label for="secret-input">Secret</label>
-                    <textarea id="secret-input" placeholder="Paste anything sensitive..."></textarea>
-                </div>
+    <main>
+        <div class="container">
+            <div id="create-view">
+                <div id="input-section">
+                    <div class="form-group">
+                        <label for="secret-input">Secret</label>
+                        <textarea id="secret-input" placeholder="Paste anything sensitive..."></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <label for="passphrase-input">Passphrase</label>
-                    <input type="password" id="passphrase-input" placeholder="Enter passphrase (Optional)">
-                </div>
+                    <div class="form-group">
+                        <label for="passphrase-input">Passphrase</label>
+                        <input type="password" id="passphrase-input" placeholder="Enter passphrase (Optional)">
+                    </div>
 
-                <div class="form-group">
-                    <label for="ttl-select">Expires in</label>
-                    <select id="ttl-select">
-                        <option value="300">5 Minutes</option>
-                        <option value="1800">30 Minutes</option>
-                        <option value="3600">1 Hour</option>
-                        <option value="21600">6 Hours</option>
-                        <option value="43200">12 Hours</option>
-                        <option value="86400">1 Day</option>
-                        <option value="604800" selected>1 Week</option>
-                        <option value="1209600">2 Weeks</option>
-                        <option value="2592000">1 Month</option>
-                        <option value="7776000">3 Months</option>
-                        <option value="15552000">6 Months</option>
-                        <option value="31536000">1 Year</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label for="ttl-select">Expires in</label>
+                        <select id="ttl-select">
+                            <option value="300">5 Minutes</option>
+                            <option value="1800">30 Minutes</option>
+                            <option value="3600">1 Hour</option>
+                            <option value="21600">6 Hours</option>
+                            <option value="43200">12 Hours</option>
+                            <option value="86400">1 Day</option>
+                            <option value="604800" selected>1 Week</option>
+                            <option value="1209600">2 Weeks</option>
+                            <option value="2592000">1 Month</option>
+                            <option value="7776000">3 Months</option>
+                            <option value="15552000">6 Months</option>
+                            <option value="31536000">1 Year</option>
+                        </select>
+                    </div>
 
-                <button id="generate-btn">Create Secret Link</button>
-            </div>
-            <div id="result-area" class="hidden">
-                <p style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.9rem;">Share
-                    this disposable link:</p>
-                <div class="link-box">
-                    <input type="text" id="secret-link" readonly onclick="this.select()">
-                    <button id="copy-btn" class="icon-btn" title="Copy link">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    <button id="generate-btn">Create Secret Link</button>
+                </div>
+                <div id="result-area" class="hidden">
+                    <p style="margin-top: 2rem; margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        Share
+                        this disposable link:</p>
+                    <div class="link-box">
+                        <input type="text" id="secret-link" readonly onclick="this.select()">
+                        <button id="copy-btn" class="icon-btn" title="Copy link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="#" id="delete-btn" class="delete-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2">
+                            </path>
                         </svg>
-                    </button>
+                        Delete secret
+                    </a>
                 </div>
-                <a href="#" id="delete-btn" class="delete-link">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2">
-                        </path>
-                    </svg>
-                    Delete secret
-                </a>
+            </div>
+
+            <div id="read-view" class="hidden">
+                <p class="read-view-description">This secret can be viewed only once.</p>
+
+                <div id="passphrase-section" class="hidden passphrase-container">
+                    <p class="passphrase-info">This secret is protected by a passphrase.</p>
+                    <div class="form-group">
+                        <label for="decrypt-passphrase">Passphrase</label>
+                        <input type="password" id="decrypt-passphrase" placeholder="Enter passphrase">
+                    </div>
+                    <button id="submit-passphrase-btn">Unlock</button>
+                </div>
+
+                <button id="reveal-btn">Reveal Secret</button>
+                <div id="secret-display" class="hidden">
+                    <div class="link-box">
+                        <pre id="secret-content"></pre>
+                        <button id="copy-secret-btn" class="icon-btn" title="Copy secret">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="warning">This one-time link has now expired. Make sure to save the secret before you close
+                        this page.</p>
+                </div>
+                <p id="error-msg" class="error hidden"></p>
             </div>
         </div>
-
-        <div id="read-view" class="hidden">
-            <p class="read-view-description">This secret can be viewed only once.</p>
-
-            <div id="passphrase-section" class="hidden passphrase-container">
-                <p class="passphrase-info">This secret is protected by a passphrase.</p>
-                <div class="form-group">
-                    <label for="decrypt-passphrase">Passphrase</label>
-                    <input type="password" id="decrypt-passphrase" placeholder="Enter passphrase">
-                </div>
-                <button id="submit-passphrase-btn">Unlock</button>
-            </div>
-
-            <button id="reveal-btn">Reveal Secret</button>
-            <div id="secret-display" class="hidden">
-                <div class="link-box">
-                    <pre id="secret-content"></pre>
-                    <button id="copy-secret-btn" class="icon-btn" title="Copy secret">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <p class="warning">This one-time link has now expired. Make sure to save the secret before you close
-                    this page.</p>
-            </div>
-            <p id="error-msg" class="error hidden"></p>
-        </div>
-    </div>
+    </main>
 
     <footer>
         <p>
@@ -166,7 +170,7 @@
         </p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>

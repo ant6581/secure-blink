@@ -38,6 +38,24 @@ class SecurityHeaders(BaseHTTPMiddleware):
         return response
 
 
+class CacheControl(BaseHTTPMiddleware):
+    """
+    Adds Cache-Control headers to static assets.
+    """
+
+    async def dispatch(
+        self, request: Request, call_next: RequestResponseEndpoint
+    ) -> Response:
+        response = await call_next(request)
+
+        path = request.url.path
+        if path.endswith((".css", ".js", ".png", ".svg", ".ico", ".woff2")):
+            # Cache for 1 week
+            response.headers["Cache-Control"] = "public, max-age=604800, immutable"
+
+        return response
+
+
 # Type aliases
 ClientIP = str
 RequestTimestamps = list[datetime]
