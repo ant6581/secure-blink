@@ -232,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         secretDisplay.classList.remove('hidden');
         revealBtn.classList.add('hidden');
         passphraseSection.classList.add('hidden');
+        errorMsg.classList.add('hidden');
     }
 
     revealBtn.addEventListener('click', async () => {
@@ -256,7 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
     submitPassphraseBtn.addEventListener('click', async () => {
         const passphrase = decryptPassphraseInput.value;
         if (!passphrase) return;
-
+        
+        errorMsg.classList.add('hidden');
         try {
             const hash = window.location.hash.substring(1);
             const [id, keyBase64] = hash.split('_');
